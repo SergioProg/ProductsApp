@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ProductApplication</string>
+
+    <string name="list_empty">Нет товаров для отображения</string>
+    <string name="request_error">Ошибка запроса</string>
+    <string name="retry">Повторить</string>
+</resources>
