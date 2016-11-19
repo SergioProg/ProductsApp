@@ -4,4 +4,6 @@
     <string name="list_empty">Нет товаров для отображения</string>
     <string name="request_error">Ошибка запроса</string>
     <string name="retry">Повторить</string>
+    <string name="title">Ювелирные изделия</string>
+    <string name="price">Цена </string>
 </resources>

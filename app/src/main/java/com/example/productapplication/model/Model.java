@@ -1,9 +1,8 @@
 package com.example.productapplication.model;
 
-import com.example.productapplication.model.dto.ProductDTO;
 import com.example.productapplication.model.dto.ProductInfoDTO;
+import com.example.productapplication.model.dto.ProductsListDTO;
 
-import java.util.List;
 import rx.Observable;
 
 /**
@@ -12,7 +11,7 @@ import rx.Observable;
 
 public interface Model {
 
-    Observable<List<ProductDTO>> getProducts(String page);
+    Observable<ProductsListDTO> getProducts(String page);
 
     Observable<ProductInfoDTO> getProductInfo(String article);
 }

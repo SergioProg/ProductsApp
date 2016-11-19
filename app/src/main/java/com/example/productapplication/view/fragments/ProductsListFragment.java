@@ -15,6 +15,7 @@ import com.example.productapplication.R;
 import com.example.productapplication.presenter.BaseProductPresenter;
 import com.example.productapplication.presenter.ProductsListPresenter;
 import com.example.productapplication.presenter.viewObjects.Product;
+import com.example.productapplication.view.adapters.ProductsAdapter;
 import com.example.productapplication.view.interfaces.ActivityCamunicator;
 import com.example.productapplication.view.interfaces.ProductsView;
 
@@ -30,6 +31,7 @@ public class ProductsListFragment extends BaseFragment implements ProductsView{
     private ActivityCamunicator comunicator;
     private RelativeLayout mainLayout;
     private RecyclerView productsView;
+    private ProductsAdapter adapter;
     private ProgressBar loader;
 
     @Override
@@ -48,8 +50,6 @@ public class ProductsListFragment extends BaseFragment implements ProductsView{
     }
 
 
-
-
     @Override
     protected BaseProductPresenter getPresenter() {
         return productsPresenter;
@@ -58,7 +58,13 @@ public class ProductsListFragment extends BaseFragment implements ProductsView{
     @Override
     public void showProducts(List<Product> products) {
         loader.setVisibility(View.GONE);
+        adapter = new ProductsAdapter(getContext(), products, productsPresenter);
+        productsView.setAdapter(adapter);
+    }
 
+    @Override
+    public void addProducts(List<Product> products) {
+        adapter.add(products);
     }
 
     @Override
@@ -80,7 +86,7 @@ public class ProductsListFragment extends BaseFragment implements ProductsView{
     @Override
     public void showError(String error) {
         loader.setVisibility(View.GONE);
-        Snackbar.make(mainLayout, error, Snackbar.LENGTH_SHORT)
+        Snackbar.make(mainLayout, error, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.retry, (view) -> productsPresenter.loadRetry())
                 .show();
     }

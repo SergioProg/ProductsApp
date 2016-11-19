@@ -15,7 +15,7 @@ public class ProductsListMapper implements Func1<List<ProductDTO>, List<Product>
     @Override
     public List<Product> call(List<ProductDTO> productDTOs) {
         List<Product> productList = Observable.from(productDTOs)
-                .map(productDTO -> new Product(productDTO.getName(), productDTO.getImageUrl(), productDTO.getArticle()))
+                .map(productDTO -> new Product(productDTO.getGemTitle(), productDTO.getName(), productDTO.getGemDescription(), productDTO.getImages().get(0).getFile(), productDTO.getArticle()))
                 .toList()
                 .toBlocking()
                 .first();

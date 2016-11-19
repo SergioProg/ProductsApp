@@ -17,6 +17,8 @@ import rx.subscriptions.Subscriptions;
 
 public class ProductInfoPresenter extends BaseProductPresenter {
 
+    private final static String PRODUCT_INFO = "PRODUCT_INFO";
+    private final static String PRODUCT = "PRODUCT";
     private Subscription subscription = Subscriptions.empty();
     private ProductInfoView productInfoView;
     private ProductInfoMapper productInfoMapper = new ProductInfoMapper();
@@ -32,6 +34,8 @@ public class ProductInfoPresenter extends BaseProductPresenter {
         if (!subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }
+
+        productInfoView.showProgress();
 
         subscription = model.getProductInfo(article)
                 .map(productInfoMapper)
@@ -59,8 +63,8 @@ public class ProductInfoPresenter extends BaseProductPresenter {
 
     public void onCreate(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            productInfo = (ProductInfo) savedInstanceState.getSerializable("PRODUCT_INFO");
-            product = (Product) savedInstanceState.getSerializable("PRODUCT");
+            productInfo = (ProductInfo) savedInstanceState.getSerializable(PRODUCT_INFO);
+            product = (Product) savedInstanceState.getSerializable(PRODUCT);
         }
 
         if (productInfo !=null){
@@ -70,10 +74,14 @@ public class ProductInfoPresenter extends BaseProductPresenter {
         }
     }
 
+    public void RetryLoadInfo(){
+        if (product!=null) loadProductInfo(product.getArticle());
+    }
+
     public void onSaveInstanceState(Bundle outState) {
         if (productInfo != null) {
-            outState.putSerializable("PRODUCT_INFO", productInfo);
-            outState.putSerializable("PRODUCT", product);
+            outState.putSerializable(PRODUCT_INFO, productInfo);
+            outState.putSerializable(PRODUCT, product);
         }
     }
 

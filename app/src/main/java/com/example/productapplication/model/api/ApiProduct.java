@@ -10,7 +10,7 @@ import retrofit.RxJavaCallAdapterFactory;
 
 public class ApiProduct {
 
-    private static final String BASE_URL = "http://api.lvsl.ru/v1/catalog/";
+    private static final String BASE_URL = "http://api.lvsl.ru";
 
     public static ApiProductInterface getApiInterface() {
 

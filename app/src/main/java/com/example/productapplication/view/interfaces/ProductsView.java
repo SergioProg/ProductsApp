@@ -11,6 +11,7 @@ import java.util.List;
 public interface ProductsView extends ViewInterface {
 
     void showProducts(List<Product> products);
+    void addProducts(List<Product> products);
     void showProgress();
     void showProductInfo(Product product);
     void showEmpty();
