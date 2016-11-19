@@ -15,7 +15,7 @@ import rx.schedulers.Schedulers;
 
 public class ProductModel implements Model {
 
-    ApiProductInterface apiInterface = ApiProduct.getApiInterface();
+    private ApiProductInterface apiInterface = ApiProduct.getApiInterface();
     private static final String regionId = "91eae2f5-b1d7-442f-bc86-c6c11c581fad";
 
     @Override

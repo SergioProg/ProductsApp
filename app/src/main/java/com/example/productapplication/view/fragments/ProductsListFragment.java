@@ -1,6 +1,5 @@
 package com.example.productapplication.view.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
@@ -65,6 +64,7 @@ public class ProductsListFragment extends BaseFragment implements ProductsView{
     @Override
     public void addProducts(List<Product> products) {
         adapter.add(products);
+        adapter.setNext(true);
     }
 
     @Override

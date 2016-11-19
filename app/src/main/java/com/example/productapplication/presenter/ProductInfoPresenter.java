@@ -59,6 +59,7 @@ public class ProductInfoPresenter extends BaseProductPresenter {
                         }
                     }
                 });
+
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -84,5 +85,4 @@ public class ProductInfoPresenter extends BaseProductPresenter {
             outState.putSerializable(PRODUCT, product);
         }
     }
-
 }

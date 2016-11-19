@@ -16,6 +16,7 @@ public class BaseProductPresenter implements Presenter {
     protected Model model = new ProductModel();
     private Subscription subscription = Subscriptions.empty();
 
+
     @Override
     public void onStop() {
         if (!subscription.isUnsubscribed()) {

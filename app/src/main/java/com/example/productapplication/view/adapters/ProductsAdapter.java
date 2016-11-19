@@ -25,7 +25,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     private List<Product> items = new ArrayList<Product>();
     private Context context;
     private ProductsListPresenter presenter;
-    private final int onLoadMoreItems = 10;
+    private final int onLoadMoreItems = 20;
+    private boolean nextPage = true;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -47,13 +48,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         notifyDataSetChanged();
     }
 
-
+    public void setNext(boolean next){
+        this.nextPage = next;
+    }
 
     public ProductsAdapter(Context context, List<Product> myDataset, ProductsListPresenter presenter) {
         this.context = context;
         this.items = myDataset;
         this.presenter = presenter;
-        //ImageLoader.getInstance().denyNetworkDownloads(true);
     }
 
 
@@ -83,7 +85,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             presenter.selectProduct(clickedItem);
         });
 
-        if (position >= items.size()-onLoadMoreItems) presenter.loadNext();
+        if (position > items.size()-onLoadMoreItems && nextPage) {
+            nextPage = false;
+            presenter.loadNext();
+        }
     }
 
     @Override

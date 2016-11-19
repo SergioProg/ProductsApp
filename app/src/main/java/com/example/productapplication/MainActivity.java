@@ -15,6 +15,7 @@ import com.example.productapplication.view.interfaces.ActivityCamunicator;
 
 public class MainActivity extends AppCompatActivity implements ActivityCamunicator{
 
+    private static String FRAGMENT_TAG = "FRAGMENT";
     private FragmentManager fragmentManager;
     private Toolbar toolbar;
 
@@ -31,12 +32,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCamunicat
         }
 
         fragmentManager = getSupportFragmentManager();
-        replaceFragment(new ProductsListFragment(), false);
+        Fragment fragment = fragmentManager.findFragmentByTag(FRAGMENT_TAG);
+        if(fragment == null) replaceFragment(new ProductsListFragment(), false);
     }
 
     private void replaceFragment(Fragment fragment, boolean addBackStack) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.container, fragment);
+        transaction.replace(R.id.container, fragment, FRAGMENT_TAG);
         if (addBackStack) transaction.addToBackStack(null);
         transaction.commit();
     }

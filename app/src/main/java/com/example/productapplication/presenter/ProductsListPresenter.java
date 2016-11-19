@@ -1,8 +1,6 @@
 package com.example.productapplication.presenter;
 
 import android.os.Bundle;
-import android.util.Log;
-
 import com.example.productapplication.model.dto.ProductsListDTO;
 import com.example.productapplication.presenter.viewObjects.Product;
 import com.example.productapplication.presenter.viewObjects.ProductsListMapper;
@@ -54,7 +52,6 @@ public class ProductsListPresenter extends BaseProductPresenter {
                         public void onError(Throwable e) {
                             productsView.showError(e.getMessage());
                             e.printStackTrace();
-                            //Log.e("Request Error: ", )
                         }
 
                         @Override
@@ -69,6 +66,7 @@ public class ProductsListPresenter extends BaseProductPresenter {
                             }
                         }
                     });
+
         }
     }
 
@@ -80,9 +78,7 @@ public class ProductsListPresenter extends BaseProductPresenter {
 
         if (productsList !=null && !productsList.isEmpty()){
             productsView.showProducts(productsList);
-        } else {
-            loadProducts("1", false);
-        }
+        } else loadNext();
     }
 
     public void loadRetry(){
